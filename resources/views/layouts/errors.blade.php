@@ -9,12 +9,16 @@
                     <h4 class="modal-title">错误提示</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <ul>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <i class="fa fa-info-circle fa-4x"></i>
+                        </div>
+
+                        <div class="col-sm-9">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
-                        </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

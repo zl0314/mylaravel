@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AdminPost;
+use App\Http\Requests\AdminProfile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
@@ -36,15 +37,25 @@ class EntryController extends Controller
         return view( 'admin.entry.my' );
     }
 
+
+    public function updateInfo ( AdminProfile $request )
+    {
+        echo '12';
+    }
+
+    public function chpassForm ()
+    {
+        return view( 'admin.entry.chpass' );
+    }
+
     /**
      * 修改密码
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function changePassword (AdminPost $request)
+    public function changePassword ( AdminPost $request )
     {
-
+        echo '23';
     }
-
 
     /** 系统 信息
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
