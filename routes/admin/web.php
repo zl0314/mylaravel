@@ -20,7 +20,8 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin' ], function () {
     Route::get( 'quite', 'EntryController@quite' );
 
     Route::get( 'my', 'EntryController@my' );
-    Route::post( 'my', 'EntryController@changePassword' );
-
+    Route::post( 'my', 'EntryController@updateInfo' );
+    Route::get( 'chpass', 'EntryController@chpassForm' );
+    Route::post( 'chpass', 'EntryController@changePassword' );
 } );
 
