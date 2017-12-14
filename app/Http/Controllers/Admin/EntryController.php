@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AdminPost;
-use App\Http\Requests\AdminProfile;
+use App\Http\Requests\AdminProfile as AdminProfilePost;
+use App\Model\AdminProfile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
@@ -34,13 +35,42 @@ class EntryController extends Controller
      */
     public function my ()
     {
-        return view( 'admin.entry.my' );
+        $admin_id = Auth::guard( 'admin' )->user()->id;
+        $user = AdminProfile::where( 'admin_id', '=', $admin_id )->first();
+
+        return view( 'admin.entry.my', [
+            'user' => $user,
+        ] );
     }
 
 
-    public function updateInfo ( AdminProfile $request )
+    public function updateInfo ( AdminProfilePost $request )
     {
-        echo '12';
+        $model = new AdminProfile;
+        //先查找有没有当前管理员的个人信息记录
+        $admin_id = Auth::guard( 'admin' )->user()->id;
+        $admin_row = $model->where( 'admin_id', '=', $admin_id )->first();
+
+        $model->realname = $request['realname'];
+        $model->birthday = $request['birthday'];
+        $model->email = $request['email'];
+        $model->mobile = $request['mobile'];
+        $model->headimg = $request['headimg'];
+        $model->admin_id = $admin_id;
+
+        if ( !empty( $admin_row ) ) {
+            $res = $model->update();
+        } else {
+            $res = $model->save();
+        }
+
+        if ( $res ) {
+            flash()->success( '信息保存成功' )->overlay();
+        } else {
+            flash()->error( '信息保存失败' )->overlay();
+        }
+
+        return redirect( '/admin/my' );
     }
 
     public function chpassForm ()
@@ -54,7 +84,13 @@ class EntryController extends Controller
      */
     public function changePassword ( AdminPost $request )
     {
-        echo '23';
+        $model = Auth::guard( 'admin' )->user();
+        $model->password = bcrypt( $request->password );
+        $model->save();
+
+        flash()->success( '密码修改成功' )->overlay();
+
+        return redirect( 'admin/chpass' );
     }
 
     /** 系统 信息
@@ -81,10 +117,7 @@ class EntryController extends Controller
      */
     public function login ()
     {
-        $data = [
-        ];
-
-        return view( 'admin.entry.login', $data );
+        return view( 'admin.entry.login' );
     }
 
     /**

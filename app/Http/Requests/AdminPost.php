@@ -18,6 +18,7 @@ class AdminPost extends FormRequest
         return Auth::guard( 'admin' )->check();
     }
 
+    //验证原密码是否正确
     public function validator_password ()
     {
         Validator::extend( 'check_password', function ( $attrubute, $value, $parameters, $validator ) {
@@ -31,8 +32,10 @@ class AdminPost extends FormRequest
      */
     public function rules ()
     {
+        //验证密码
         $this->validator_password();
 
+        //规则
         return [
             'original_password'     => 'sometimes|required|check_password',
             'password'              => 'sometimes|required|confirmed|min:8|max:15',
