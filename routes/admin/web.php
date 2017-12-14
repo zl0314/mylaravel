@@ -23,5 +23,8 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin' ], function () {
     Route::post( 'my', 'EntryController@updateInfo' );
     Route::get( 'chpass', 'EntryController@chpassForm' );
     Route::post( 'chpass', 'EntryController@changePassword' );
+
+
 } );
 
+Route::post('/upload', 'UploadController@upload');

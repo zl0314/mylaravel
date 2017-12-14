@@ -39,6 +39,7 @@ class AdminProfile extends FormRequest
             'email.required' => '邮箱地址不能为空',
             'email.email'    => '邮箱地址不正确',
             'mobile.regex'   => '联系方式格式不正确',
+            'birthday.regex' => '生日格式不正确',
         ];
     }
 }
