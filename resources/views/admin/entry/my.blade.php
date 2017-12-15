@@ -5,6 +5,7 @@
     <script src="/zl/js/ajaxupload.3.9.js"></script>
     <form action="{{url('/admin/my')}}" method="post" class="form-horizontal" role="form">
         {{csrf_field()}}
+        <input type="hidden" name="id" value="{{$user->id}}">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">我的资料</h3>
