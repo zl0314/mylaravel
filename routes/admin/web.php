@@ -11,11 +11,8 @@
 |
 */
 
-Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin' ], function () {
+Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin.auth' ], function () {
     Route::get( 'index', 'EntryController@index' );
-    Route::get( 'login', 'EntryController@login' );
-    Route::post( 'login', 'EntryController@dologin' );
-    Route::get( 'code/{radom}', 'EntryController@code' );
     Route::get( 'info', 'EntryController@info' );
     Route::get( 'quite', 'EntryController@quite' );
 
@@ -23,8 +20,12 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin' ], function () {
     Route::post( 'my', 'EntryController@updateInfo' );
     Route::get( 'chpass', 'EntryController@chpassForm' );
     Route::post( 'chpass', 'EntryController@changePassword' );
-
-
 } );
 
-Route::post('/upload', 'UploadController@upload');
+Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin' ], function () {
+    Route::get( 'login', 'EntryController@login' );
+    Route::post( 'login', 'EntryController@dologin' );
+    Route::get( 'code/{radom}', 'EntryController@code' );
+} );
+
+Route::post( '/upload', 'UploadController@upload' );

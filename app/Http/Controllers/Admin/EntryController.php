@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class EntryController extends Controller
@@ -49,18 +50,25 @@ class EntryController extends Controller
         $model = new AdminProfile;
         //先查找有没有当前管理员的个人信息记录
         $admin_id = Auth::guard( 'admin' )->user()->id;
-        $admin_row = $model->where( 'admin_id', '=', $admin_id )->first();
+        $row = $model->where( 'admin_id', '=', 1 )->first();
 
-        $model->realname = $request['realname'];
-        $model->birthday = $request['birthday'];
-        $model->email = $request['email'];
-        $model->mobile = $request['mobile'];
-        $model->headimg = $request['headimg'];
-        $model->admin_id = $admin_id;
-
-        if ( !empty( $admin_row ) ) {
-            $res = $model->update();
+        if ( !empty( $row->id ) ) {
+            $data = [
+                'realname' => $request['realname'],
+                'birthday' => $request['birthday'],
+                'email'    => $request['email'],
+                'mobile'   => $request['mobile'],
+                'headimg'  => $request['headimg'],
+            ];
+            DB::table( 'admins_profile' )->where( [ 'admin_id' => $admin_id ] )->update( $data );
+            $res = true;
         } else {
+            $model->realname = $request['realname'];
+            $model->birthday = $request['birthday'];
+            $model->email = $request['email'];
+            $model->mobile = $request['mobile'];
+            $model->headimg = $request['headimg'];
+            $model->admin_id = $admin_id;
             $res = $model->save();
         }
 
