@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 use App\Model\Category;
+use App\Http\Controllers\Admin\BackController;
 
-class CategoryController extends Controller
+class CategoryController extends BackController
 {
 
     /**
@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         $data = Category::get();
 
-        return view( 'admin.category.index', [ 'data' => $data ] );
+        return $this->display( [ 'data' => $data ] );
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create ()
     {
-        return view( 'admin.category.create' );
+        return $this->display();
     }
 
 
@@ -67,7 +67,7 @@ class CategoryController extends Controller
     {
         $model = Category::find( $id );
 
-        return view( 'admin.category.edit', [
+        return $this->display( [
             'model' => $model,
         ] );
     }

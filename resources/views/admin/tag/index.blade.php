@@ -2,11 +2,11 @@
 
 @section('content')
 
-    @include('admin.tags.nav')
+    @include('admin.tag.nav')
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">标签标签</h3>
+            <h3 class="panel-title">标签管理</h3>
         </div>
         <div class="panel-body">
 

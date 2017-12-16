@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('content')
+
     @include('UEditor::head')
+    @include('admin.article.nav')
+
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">文章管理</h3>

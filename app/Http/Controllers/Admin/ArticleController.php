@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Model\Article;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\BackController;
 
-class ArticleController extends Controller
+class ArticleController extends BackController
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +21,11 @@ class ArticleController extends Controller
             $where['category_id'] = $request->get( 'category_id' );
         }
 
-        $data = Article::where( $where )->Title($request->get( 'title' ))->get();
+        $data = Article::where( $where )->Title( $request->get( 'title' ) )->get();
 
-        return view( 'admin.article.index', [ 'data' => $data ] );
+        $vars = [ 'data' => $data ];
+
+        return $this->display($vars);
     }
 
     /**
@@ -31,7 +34,7 @@ class ArticleController extends Controller
      */
     public function create ()
     {
-        return view('admin.article.create');
+        return $this->display();
     }
 
     /**
@@ -69,9 +72,12 @@ class ArticleController extends Controller
     {
         $model = Article::find( $id );
 
-        return view( 'admin.article.edit', [
+        $vars = [
             'model' => $model,
-        ] );
+        ];
+        $this->assign( $vars );
+
+        return $this->display($vars);
     }
 
     /**

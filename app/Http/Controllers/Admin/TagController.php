@@ -6,8 +6,9 @@ use App\Http\Requests\TagRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Tag;
+use App\Http\Controllers\Admin\BackController;
 
-class TagController extends Controller
+class TagController extends BackController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,7 @@ class TagController extends Controller
     {
         $data = Tag::get();
 
-        return view( 'admin.tags.index', [ 'data' => $data ] );
+        return $this->display( [ 'data' => $data ] );
     }
 
     /**
@@ -26,7 +27,7 @@ class TagController extends Controller
      */
     public function create ()
     {
-        return view( 'admin.tags.create' );
+        return $this->display();
     }
 
     /**
@@ -66,7 +67,7 @@ class TagController extends Controller
     {
         $model = Tag::find( $id );
 
-        return view( 'admin.tags.edit', [
+        return $this->display( [
             'model' => $model,
         ] );
     }
