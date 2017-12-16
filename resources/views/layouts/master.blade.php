@@ -31,8 +31,9 @@
                 method: 'DELETE',
                 dataType: 'json',
                 success: function (res) {
-                    layer.msg(res.message, {icon: 1});
-                    $('#item_' + id).remove();
+                    layer.msg(res.message, {icon: 1}, function(){
+                        $('#item_' + id).remove();
+                    });
                 }
             })
         });

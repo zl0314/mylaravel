@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+    @include('admin.article.nav')
+
     @include('UEditor::head')
     <div class="panel panel-primary">
         <div class="panel-heading">
