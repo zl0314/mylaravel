@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{{asset('/zl/font/css/font-awesome.min.css')}}">
     <script type="text/javascript" src="{{asset('/zl/js/jquery.js')}}"></script>
     <script type="text/javascript" src="{{asset('/zl/js/ch-ui.admin.js')}}"></script>
-
+    <!-- Latest compiled and minified JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/zl/layer/layer.js"></script>
     <link rel="stylesheet" href="/zl/css/bootstrap.min.css">
 </head>
 <title>测试后台</title>
@@ -19,6 +21,23 @@
         },
     });
 
+    function del(id) {
+        //询问框
+        layer.confirm('确认要删除此记录？', {
+            btn: ['确认', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                url: '{{url(request()->path())}}/' + id,
+                method: 'DELETE',
+                dataType: 'json',
+                success: function (res) {
+                    layer.msg(res.message, {icon: 1});
+                    $('#item_' + id).remove();
+                }
+            })
+        });
+
+    }
 </script>
 
 @include('flash::message')
@@ -28,5 +47,4 @@
     @yield('content')
 </div>
 
-@include('layouts.ajaxupload')
 @include('layouts.errors')

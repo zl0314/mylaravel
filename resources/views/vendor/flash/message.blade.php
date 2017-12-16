@@ -23,5 +23,9 @@
         </div>
     @endif
 @endforeach
-
+<script>
+    setTimeout(function(){
+        $('.alert').fadeOut();
+    }, 1500)
+</script>
 {{ session()->forget('flash_notification') }}

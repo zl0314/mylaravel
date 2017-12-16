@@ -20,6 +20,11 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'ad
     Route::post( 'my', 'EntryController@updateInfo' );
     Route::get( 'chpass', 'EntryController@chpassForm' );
     Route::post( 'chpass', 'EntryController@changePassword' );
+
+
+    Route::resource( 'tag', 'TagController' );
+    Route::resource( 'category', 'CategoryController' );
+    Route::resource( 'article', 'ArticleController' );
 } );
 
 Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin' ], function () {
@@ -28,4 +33,5 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin' ], function () {
     Route::get( 'code/{radom}', 'EntryController@code' );
 } );
 
+//上传
 Route::post( '/upload', 'UploadController@upload' );

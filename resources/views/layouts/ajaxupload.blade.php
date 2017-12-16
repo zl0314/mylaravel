@@ -1,6 +1,5 @@
+<script src="/zl/js/ajaxupload.3.9.js"></script>
 <script>
-
-
     var allow = 1;
     var allow_size = typeof(allow_size) == 'undefined' ? '<?php echo str_replace( 'M', '', ini_get( 'upload_max_filesize' ) ) * 1024 * 1024?>' : allow_size;
 

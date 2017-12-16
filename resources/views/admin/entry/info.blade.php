@@ -14,9 +14,7 @@
                 <li>
                     <label>运行环境</label><span>{{$_SERVER['SERVER_SOFTWARE']}}</span>
                 </li>
-                <li>
-                    <label>版本</label><span>v-1.0</span>
-                </li>
+
                 <li>
                     <label>上传附件限制</label><span><?php echo get_cfg_var( "upload_max_filesize" ) ? get_cfg_var( "upload_max_filesize" ) : "不允许上传附件"; ?></span>
                 </li>

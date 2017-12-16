@@ -1,6 +1,5 @@
 @if (count($errors) > 0)
-    <!-- Latest compiled and minified JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <div class="modal fade" id="erros_message">
         <div class="modal-dialog">
             <div class="modal-content">
