@@ -22,8 +22,9 @@ class EntryController extends Controller
         ] );
     }
 
+
     /**
-     * 后台首页
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index ()
     {

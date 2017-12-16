@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +166,8 @@ return [
 
 
         Laracasts\Flash\FlashServiceProvider::class,
+        Stevenyangecho\UEditor\UEditorServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
