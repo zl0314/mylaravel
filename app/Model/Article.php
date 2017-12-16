@@ -15,4 +15,8 @@ class Article extends Model
             return $query->where( 'title', 'like', '%' . $title . '%' );
         }
     }
+
+    public function category(){
+        return $this->hasOne('App\Model\Category', 'id', 'category_id');
+    }
 }

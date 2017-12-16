@@ -67,7 +67,11 @@ class ArticleController extends Controller
      */
     public function edit ( $id )
     {
-        //
+        $model = Article::find( $id );
+
+        return view( 'admin.article.edit', [
+            'model' => $model,
+        ] );
     }
 
     /**
@@ -80,7 +84,21 @@ class ArticleController extends Controller
      */
     public function update ( ArticleRequest $request, $id )
     {
-        //
+
+        $model = Article::find( $id );
+        $model->title = $request['title'];
+        $model->category_id = $request['category_id'];
+        $model->seourl = $request['seourl'];
+        $model->intro = $request['intro'];
+        $model->content = $request['content'];
+        $model->thumb = $request['thumb'];
+        $model->recommend_to_index = $request['recommend_to_index'];
+        $model->author = $request['author'];
+        $model->save();
+
+        flash()->success( '修改成功' );
+
+        return redirect( url( '/admin/article' ) );
     }
 
     /**

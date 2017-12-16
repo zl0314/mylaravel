@@ -34,6 +34,7 @@
                 <tr>
                     <th>编号</th>
                     <th>标题</th>
+                    <th>分类 </th>
                     <th>SEOURL</th>
                     <th>发布时间</th>
                     <th>状态</th>
@@ -47,15 +48,16 @@
                         <tr id="item_{{$item->id}}">
                             <td>{{$item->id}}</td>
                             <td>{{$item->title}}</td>
+                            <td>{{$item->category->name}}</td>
                             <td>{{$item->seourl}}</td>
                             <td>{{$item->created_at}}</td>
                             <td>@if(!empty($item->deleted_at)) 软删除 @else 正常 @endif</td>
                             <td>@if(!empty($item->recommend_to_index)) 是 @else 否 @endif</td>
                             <td>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-default">编辑</button>
-                                    <button type="button" class="btn btn-default" onclick="del('{{$item->id}}')">删除
-                                    </button>
+                                    <a  href="{{url('/admin/article/' . $item->id . '/edit')}}" class="btn btn-default">编辑</a>
+                                    <a   class="btn btn-default" onclick="del('{{$item->id}}')">删除
+                                    </a>
                                     @if(!empty($item->deleted_at))
                                         <button type="button" class="btn btn-default">恢复</button>
                                     @endif

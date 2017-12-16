@@ -64,7 +64,11 @@ class TagController extends Controller
      */
     public function edit ( $id )
     {
+        $model = Tag::find( $id );
 
+        return view( 'admin.tags.edit', [
+            'model' => $model,
+        ] );
     }
 
     /**
@@ -77,7 +81,13 @@ class TagController extends Controller
      */
     public function update ( Request $request, $id )
     {
-        //
+        $model = Tag::find( $id );
+        $model->name = $request['name'];
+        $model->save();
+
+        flash()->success( '修改成功' );
+
+        return redirect( url( '/admin/tag' ) );
     }
 
     /**
@@ -89,7 +99,8 @@ class TagController extends Controller
      */
     public function destroy ( $id, Tag $model )
     {
-        $model->destroy($id);
-        return response()->json(['message' => '删除成功']);
+        $model->destroy( $id );
+
+        return response()->json( [ 'message' => '删除成功' ] );
     }
 }
