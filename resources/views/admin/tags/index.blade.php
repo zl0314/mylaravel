@@ -28,7 +28,7 @@
                             <td>{{$item->created_at}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-default" href="{{url('/admin/tag/'.$item->id)}}">编辑</a>
+                                    <a class="btn btn-default" href="{{url('/admin/tag/'.$item->id).'/edit'}}">编辑</a>
                                     <a class="btn btn-default" href="javascript:;"
                                        onclick="del('{{$item->id}}')">删除 </a>
                                 </div>

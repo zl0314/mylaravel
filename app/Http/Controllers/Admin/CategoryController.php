@@ -65,7 +65,11 @@ class CategoryController extends Controller
      */
     public function edit ( $id )
     {
+        $model = Category::find( $id );
 
+        return view( 'admin.category.edit', [
+            'model' => $model,
+        ] );
     }
 
     /**
@@ -78,7 +82,13 @@ class CategoryController extends Controller
      */
     public function update ( Request $request, $id )
     {
-        //
+        $model = Category::find( $id );
+        $model->name = $request['name'];
+        $model->save();
+
+        flash()->success( '修改成功' );
+
+        return redirect( url( '/admin/category' ) );
     }
 
     /**
