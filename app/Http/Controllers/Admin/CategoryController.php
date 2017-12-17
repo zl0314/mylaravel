@@ -10,13 +10,18 @@ use App\Http\Controllers\Admin\BackController;
 class CategoryController extends BackController
 {
 
+    public function __construct ()
+    {
+        parent::__construct();
+        $this->assign( 'here', '文章分类管理' );
+    }
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
     public function index ()
     {
-        $data = Category::get();
+        $data = Category::paginate(15);
 
         return $this->display( [ 'data' => $data ] );
     }

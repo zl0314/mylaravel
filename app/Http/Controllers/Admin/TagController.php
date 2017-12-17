@@ -10,13 +10,18 @@ use App\Http\Controllers\Admin\BackController;
 
 class TagController extends BackController
 {
+    public function __construct ()
+    {
+        parent::__construct();
+        $this->assign( 'here', '标签管理' );
+    }
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
     public function index ()
     {
-        $data = Tag::get();
+        $data = Tag::paginate(15);
 
         return $this->display( [ 'data' => $data ] );
     }

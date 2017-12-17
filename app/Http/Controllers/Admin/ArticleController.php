@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class ArticleController extends BackController
 {
+    public function __construct ()
+    {
+        parent::__construct();
+        $this->assign( 'here', '文章管理' );
+    }
+
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
@@ -22,7 +28,7 @@ class ArticleController extends BackController
             $where['category_id'] = $request->get( 'category_id' );
         }
 
-        $data = Article::where( $where )->Title( $request->get( 'title' ) )->get();
+        $data = Article::where( $where )->Title( $request->get( 'title' ) )->paginate( 15 );
 
         $vars = [ 'data' => $data ];
 
@@ -120,7 +126,7 @@ class ArticleController extends BackController
         $model->save();
 
         //保存标签
-        $model->saveTags( $request,false );
+        $model->saveTags( $request, false );
 
         flash()->success( '修改成功' );
 
