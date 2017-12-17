@@ -75,6 +75,9 @@
 
                 </tbody>
             </table>
+            <ul class="pagination">
+                {!! $data->links() !!}
+            </ul>
         </div>
     </div>
 @endsection()

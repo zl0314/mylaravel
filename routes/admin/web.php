@@ -25,6 +25,9 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'ad
     Route::resource( 'tag', 'TagController' );
     Route::resource( 'category', 'CategoryController' );
     Route::resource( 'article', 'ArticleController' );
+
+    Route::get('setting', 'SettingController@index');
+    Route::post('setting', 'SettingController@store');
 } );
 
 Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin' ], function () {
