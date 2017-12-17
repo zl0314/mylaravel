@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Model\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BackController;
+use App\Model\Tag;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends BackController
 {
@@ -25,7 +26,7 @@ class ArticleController extends BackController
 
         $vars = [ 'data' => $data ];
 
-        return $this->display($vars);
+        return $this->display( $vars );
     }
 
     /**
@@ -46,7 +47,22 @@ class ArticleController extends BackController
      */
     public function store ( ArticleRequest $request, Article $model )
     {
-        //
+        $model->title = $request['title'];
+        $model->category_id = $request['category_id'];
+        $model->seourl = $request['seourl'];
+        $model->intro = $request['intro'];
+        $model->content = $request['content'];
+        $model->thumb = $request['thumb'];
+        $model->recommend_to_index = $request['recommend_to_index'];
+        $model->author = $request['author'];
+        $model->tags = implode( ',', $request['tags'] );
+        $model->save();
+
+        //保存标签
+        $model->saveTags( $request );
+        flash()->success( '文章添加成功' );
+
+        return redirect( url( '/admin/article' ) );
     }
 
     /**
@@ -77,7 +93,7 @@ class ArticleController extends BackController
         ];
         $this->assign( $vars );
 
-        return $this->display($vars);
+        return $this->display( $vars );
     }
 
     /**
@@ -100,7 +116,11 @@ class ArticleController extends BackController
         $model->thumb = $request['thumb'];
         $model->recommend_to_index = $request['recommend_to_index'];
         $model->author = $request['author'];
+        $model->tags = implode( ',', $request['tags'] );
         $model->save();
+
+        //保存标签
+        $model->saveTags( $request,false );
 
         flash()->success( '修改成功' );
 

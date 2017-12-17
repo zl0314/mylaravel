@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('content')
     @include('admin.article.nav')
-
+    <script src="/zl/js/tag.js"></script>
+    <link rel="stylesheet" href="/zl/css/tag.css">
     @include('UEditor::head')
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -21,7 +22,8 @@
                                 <select name="category_id">
                                     <option value="">==请选择==</option>
                                     @foreach(\App\Model\Category::get() as $k => $r)
-                                        <option value="{{$r->id}}" @if($model->category_id == $r->id) selected @endif>{{$r->name}}</option>
+                                        <option value="{{$r->id}}"
+                                                @if($model->category_id == $r->id) selected @endif>{{$r->name}}</option>
                                     @endforeach
                                 </select>
                             </td>
@@ -73,7 +75,8 @@
                                        value="上传图片">
                                 <small id="fileHelpId" class="form-text text-muted">JPG，PNG，GIF 格式图片,大小300*300</small>
                                 <br><br>
-                                <img src="@if( $model->thumb){{$model->thumb}}@else /zl/img/default_head.jpg @endif"    alt="" id="headimg_pic" width="100"  >
+                                <img src="@if( $model->thumb){{$model->thumb}}@else /zl/img/default_head.jpg @endif"
+                                     alt="" id="headimg_pic" width="100">
                             </td>
                         </tr>
 
@@ -84,6 +87,18 @@
                                 <textarea name="intro">{{$model->intro}}</textarea>
                             </td>
                         </tr>
+                        <tr>
+                            <th>文章标签</th>
+                            <td>
+                                <input type="text" id="tagValue3">
+                            </td>
+                            <script>
+                                var tag3 = new Tag("tagValue3");
+                                tag3.tagValue = "{{$model->tags}}";
+                                tag3.initView();
+                            </script>
+                        </tr>
+
                         <tr>
                             <th>详细内容：</th>
                             <td>
