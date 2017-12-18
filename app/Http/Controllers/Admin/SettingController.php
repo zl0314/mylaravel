@@ -25,7 +25,7 @@ class SettingController extends BackController
     {
         $setting = Db::table( 'setting' )->where( [ 'id' => 1 ] )->first();
         $vars = [];
-        if(!empty($setting['setting'])){
+        if(!empty($setting->setting)){
             $vars = [
                 'setting' => json_decode( $setting->setting ),
             ];
