@@ -24,9 +24,13 @@ class SettingController extends BackController
     public function index ()
     {
         $setting = Db::table( 'setting' )->where( [ 'id' => 1 ] )->first();
-        $vars = [
-            'setting' => json_decode( $setting->setting ),
-        ];
+        $vars = [];
+        if(!empty($setting['setting'])){
+            $vars = [
+                'setting' => json_decode( $setting->setting ),
+            ];
+        }
+        
 
         return $this->display( $vars );
     }
