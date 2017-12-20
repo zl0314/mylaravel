@@ -29,7 +29,9 @@
       "database/factories"
     ],
     "psr-4": {
-      "App\\": "app/"
+      "App\\": "app/",
+      "Zlong\\Laratest\\":"packges/zlong/laratest/src/"
+
     },
     "files": [
       "helper/common_helper.php"
