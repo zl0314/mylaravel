@@ -7,7 +7,7 @@
             <div class="logo">后台管理模板</div>
             <ul>
                 <li><a href="javascript:;" class="active">首页</a></li>
-                <li><a href="javascript:;">管理页</a></li>
+                {{--<li><a href="javascript:;">管理页</a></li>--}}
             </ul>
         </div>
         <div class="top_right">
