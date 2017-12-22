@@ -24,6 +24,7 @@ class ArticleController extends BackController
     public function index ( Request $request )
     {
 
+
         $where = [];
         if ( !empty( $request->get( 'category_id' ) ) ) {
             $where['category_id'] = $request->get( 'category_id' );
