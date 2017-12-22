@@ -24,8 +24,10 @@ class LaratestServiceProvider extends ServiceProvider
         $config['namespace'] = __NAMESPACE__;
         $router->group($config, function ($router) {
             $router->get('laratest', function () {
-                echo 'jadjkfadskf';
+                echo 'Hello, laratest';
             });
         });
+
+
     }
 }
