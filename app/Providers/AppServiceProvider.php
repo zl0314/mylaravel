@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Blade;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
             //echo 'SQL语句执行：'.$sql->sql;
         });
         Schema::defaultStringLength(191);
+
+        Blade::if('env', function($exp){
+            return app()->environment($exp);
+        });
     }
 
     /**
