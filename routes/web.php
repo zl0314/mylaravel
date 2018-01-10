@@ -13,6 +13,11 @@
 
 include_once __DIR__ . '/admin/web.php';
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::resource('/', 'TestController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

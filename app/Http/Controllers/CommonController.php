@@ -21,12 +21,13 @@ class CommonController extends Controller
         $path = request()->path();
         $pathArr = explode( '/', $path );
 
-        $siteClass = $pathArr[1];
+        $siteClass = !empty($pathArr[1]) ? $pathArr[1] : 'index';
         $id = ( !empty( $pathArr[2] ) && is_numeric( $pathArr[2] ) ) ? $pathArr[2] : '';
         $siteMethod = !empty( $id ) ? ( !empty( $pathArr[3] ) ? $pathArr[3] : '' ) : ( !empty( $pathArr[2] ) ? $pathArr[2] : 'index' );
 
         $this->siteMethod = $siteMethod;
         $this->siteClass = $siteClass;
+
         $this->id = $id;
 
         $vars = [

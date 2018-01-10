@@ -36,7 +36,6 @@ class FrontController extends CommonController
         if ( !empty( $data ) ) {
             $this->assign( $data );
         }
-
         return view( $template, $this->viewData );
     }
 }
