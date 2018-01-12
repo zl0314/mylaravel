@@ -34,11 +34,14 @@
                 <h3><i class="fa fa-fw fa-clipboard"></i>常用操作</h3>
                 <ul class="sub_menu">
                     <li><a href="{{url('admin/article')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>文章管理</a></li>
-                    <li><a href="{{url('admin/category')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>文章分类</a>
-                    <li><a href="{{url('admin/tag')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>标签管理</a>
+                    <li><a href="{{url('admin/category')}}" target="main"><i class="fa fa-fw fa-certificate"></i>文章分类</a>
+                    <li><a href="{{url('admin/tag')}}" target="main"><i class="fa fa-fw fa-tags"></i>标签管理</a>
+                    <li><a href="{{url('admin/friend_link')}}" target="main"><i class="fa fa-fw fa-link"></i>友情链接</a></li>
                     </li>
                 </ul>
             </li>
+
+
             <li>
                 <h3><i class="fa fa-fw fa-cog"></i>系统设置</h3>
                 <ul class="sub_menu">
