@@ -19,7 +19,7 @@ function Tag(inputId) {
         inputObj.css("display", "none");
         var appendStr = '';
         appendStr += '<div class="tagsContaine" id="' + inputId + '_tagcontaine">';
-        appendStr += '<div class="tagList"></div><input type="text" class="tagInput"/>';
+        appendStr += '<div class="tagList"></div><input type="text" list="tags"  class="tagInput"/>';
         appendStr += '</div>';
         inputObj.after(appendStr);
         var tagInput = $("#" + inputId + "_tagcontaine .tagInput");
@@ -107,8 +107,13 @@ var tagTake = {
             return;
         }
         $("#" + inputId + "_tagcontaine .tagList .tagItem .delete").mousedown(function () {
+            var tagValue = $(this).parent().find('input').val();
+            if(typeof(tagCallback) == 'function'){
+                tagCallback(tagValue);
+            }
             $(this).parent().remove();
-            tagTake.resetTagValue(inputId);
+            // tagTake.resetTagValue(inputId);
+            $('<input type="hidden" value="'+tagValue+'" name="remove_tag[]"> ').appendTo($("#" + inputId + "_tagcontaine"));
         });
 
         $("#" + inputId + "_tagcontaine .tagList .tagItem").dblclick(function () {

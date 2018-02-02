@@ -63,11 +63,11 @@ class ArticleController extends BackController
         $model->thumb = $request['thumb'];
         $model->recommend_to_index = $request['recommend_to_index'];
         $model->author = $request['author'];
-        $model->tags = implode( ',', $request['tags'] );
+        //$model->tags = implode( ',', $request['tags'] );
         $model->save();
 
         //保存标签
-        $model->saveTags( $request );
+        $model->saveTags( $model, $request );
         flash()->success( '文章添加成功' );
 
         return redirect( url( '/admin/article' ) );
@@ -95,9 +95,11 @@ class ArticleController extends BackController
     public function edit ( $id )
     {
         $model = Article::find( $id );
+        $tag_str = $model->getArticleTags( $model );
 
         $vars = [
-            'model' => $model,
+            'model'   => $model,
+            'tag_str' => $tag_str,
         ];
         $this->assign( $vars );
 
@@ -124,11 +126,13 @@ class ArticleController extends BackController
         $model->thumb = $request['thumb'];
         $model->recommend_to_index = $request['recommend_to_index'];
         $model->author = $request['author'];
-        $model->tags = implode( ',', $request['tags'] );
-        $model->save();
+        //$model->tags = implode( ',', $request['tags'] );
 
+        //保存数据
+        $model->save();
         //保存标签
-        $model->saveTags( $request, false );
+        $model->saveTags( $model, $request, false );
+        $this->deleteTagableData( $request, $model );
 
         flash()->success( '修改成功' );
 
@@ -148,5 +152,20 @@ class ArticleController extends BackController
 
         return response()->json( [ 'message' => '删除成功' ] );
 
+    }
+
+    public function deleteTagableData ( $request, $model )
+    {
+        if ( $request->remove_tag && $model->id ) {
+            $tag_ids = [];
+            foreach ( $request->remove_tag as $tag ) {
+                $tag = Tag::where( [ 'name' => $tag ] )->first();
+                $tag_ids[] = $tag->id;
+            }
+            $model->tags()->detach( $tag_ids );
+            //$tag = Tag::where( [ 'name' => $request->tag ] )->first();
+            //DB::table( 'tagables' )->where( [ 'tagable_id' => $request->articleid, 'tag_id' => $tag->id ] )->delete();
+            //Tag::where( [ 'id' => $tag->id ] )->delete();
+        }
     }
 }

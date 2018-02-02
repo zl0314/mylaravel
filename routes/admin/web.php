@@ -24,12 +24,15 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'ad
 
     Route::resource( 'tag', 'TagController' );
     Route::resource( 'category', 'CategoryController' );
+
+    Route::post( 'tagdel', 'ArticleController@deleteTagableData' );
     Route::resource( 'article', 'ArticleController' );
 
-    Route::get('setting', 'SettingController@index');
-    Route::post('setting', 'SettingController@store');
 
-    Route::resource('friend_link', 'FriendLink');
+    Route::get( 'setting', 'SettingController@index' );
+    Route::post( 'setting', 'SettingController@store' );
+
+    Route::resource( 'friend_link', 'FriendLink' );
 
 } );
 

@@ -21,12 +21,17 @@ class Article extends Model
         return $this->hasOne( 'App\Model\Category', 'id', 'category_id' );
     }
 
+    public function tags ()
+    {
+        return $this->morphToMany( 'App\Model\Tag', 'tagable' );
+    }
+
     /**
      * 保存标签
      *
      * @param $request
      */
-    public function saveTags ( $request, $updateTagWeight = true )
+    public function saveTags ( $model, $request, $updateTagWeight = true )
     {
         //保存标签
         $tags = $request['tags'];
@@ -42,11 +47,27 @@ class Article extends Model
                     'updated_at' => date( 'Y-m-d H:i:s' ),
                 ];
             } else {
-                if($updateTagWeight){
+                if ( $updateTagWeight ) {
                     Tag::where( $tag_where )->update( [ 'weight' => $tag_row->weight + 1 ] );
                 }
             }
         }
-        Tag::insert( $tags_data );
+
+        //再重新插入
+        if ( !empty( $tags_data ) ) {
+            $model->tags()->createMany( $tags_data );
+        }
+    }
+
+    //编辑文章时，获取标签字符串
+    public function getArticleTags ( $model )
+    {
+        $tag_str = '';
+        $con = ',';
+        foreach ( $model->tags as $tag ) {
+            $tag_str .= $con . $tag->name;
+        }
+
+        return $tag_str;
     }
 }

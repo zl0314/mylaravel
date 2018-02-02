@@ -84,7 +84,7 @@
                         <tr>
                             <th>描述：</th>
                             <td>
-                                <textarea name="intro">{{$model->intro}}</textarea>
+                                <textarea name="intro" style="height:150px;line-height: 14px;">{{$model->intro}}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -93,17 +93,35 @@
                                 <input type="text" id="tagValue3">
                             </td>
                             <script>
+                                var articleid = '{{$model->id}}';
                                 var tag3 = new Tag("tagValue3");
-                                tag3.tagValue = "{{$model->tags}}";
+                                tag3.tagValue = "{{$tag_str}}";
                                 tag3.initView();
+
+                                function tagCallback(tagValue) {
+                                    $.post('{{url('admin/tagdel')}}', {
+                                        articleid: articleid,
+                                        tag: tagValue
+                                    }, function (res) {
+
+                                    }, 'josn');
+                                }
                             </script>
+
+                            <datalist id="tags">
+                                @foreach(\App\Model\Tag::all() as $tag)
+                                    <option value="{{$tag->name}}">
+                                @endforeach
+                            </datalist>
                         </tr>
 
                         <tr>
                             <th>详细内容：</th>
                             <td>
                                 <!-- 加载编辑器的容器 -->
-                                <script style="width:900px;" id="container" name="content" type="text/plain">{!! $model->content !!}</script>
+                                <script style="width:900px;" id="container" name="content"
+                                        type="text/plain">{!! $model->content !!}
+                                </script>
 
                                 <!-- 实例化编辑器 -->
                                 <script type = "text/javascript" >
