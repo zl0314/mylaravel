@@ -136,7 +136,6 @@ class EntryController extends Controller
     {
         $userCaptcha = $request->input('captcha');
         $sessionCaptcha = Session('captcha');
-
         if ($userCaptcha && strtolower($userCaptcha) == strtolower($sessionCaptcha)) {
             $status = Auth::guard('admin')->attempt([
                 'username' => $request->input('username'),

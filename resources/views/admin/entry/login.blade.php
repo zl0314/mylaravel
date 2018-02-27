@@ -14,7 +14,7 @@
                 {{csrf_field()}}
                 <ul>
                     <li>
-                        <input type="text" name="username" class="text"/>
+                        <input type="text" id="username" name="username" class="text"/>
                         <span><i class="fa fa-user"></i></span>
                     </li>
                     <li>
@@ -32,4 +32,8 @@
                     </li>
                 </ul>
             </form>
+
+                <script>
+                    $('#username').focus();
+                </script>
 @endsection

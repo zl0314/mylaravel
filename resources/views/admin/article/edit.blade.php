@@ -68,7 +68,7 @@
                         <tr>
                             <th><i class="require">*</i>缩略图：</th>
                             <td>
-                                <input id="headimg" type="hidden" name="thumb" value="{{$model->thumb}}"
+                                <input id="thumb" type="hidden" name="thumb" value="{{$model->thumb}}"
                                        class="input-txt"/>
                                 <input type="button" class="ajaxUploadBtn btn-primary btn" id="thumb_button"
                                        onclick="ajaxUpload('thumb','thumb')"
@@ -76,7 +76,7 @@
                                 <small id="fileHelpId" class="form-text text-muted">JPG，PNG，GIF 格式图片,大小300*300</small>
                                 <br><br>
                                 <img src="@if( $model->thumb){{$model->thumb}}@else /zl/img/default_head.jpg @endif"
-                                     alt="" id="headimg_pic" width="100">
+                                     alt="" id="thumb_pic" width="100">
                             </td>
                         </tr>
 

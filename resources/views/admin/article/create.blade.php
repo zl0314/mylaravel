@@ -63,12 +63,15 @@
                             <input type="hidden" name="thumb">
                             <th><i class="require">*</i>缩略图：</th>
                             <td>
-                                <input id="headimg" type="hidden" name="headimg" value=""
+                                <input id="thumb" type="hidden" name="headimg" value=""
                                        class="input-txt"/>
                                 <input type="button" class="ajaxUploadBtn btn-primary btn" id="headimg_button"
-                                       onclick="ajaxUpload('headimg','headimg')"
+                                       onclick="ajaxUpload('thumb','thumb')"
                                        value="上传图片">
                                 <small id="fileHelpId" class="form-text text-muted">JPG，PNG，GIF 格式图片,大小300*300</small>
+                                <br><br>
+                                <img src="/zl/img/default_head.jpg"
+                                     alt="" id="thumb_pic" width="100">
                             </td>
                         </tr>
 

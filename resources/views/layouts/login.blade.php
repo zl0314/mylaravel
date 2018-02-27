@@ -15,7 +15,7 @@
 @yield('content')
 
 
-<p><a href="javascript:;">返回首页</a> &copy; 2016 Powered by <a href="http://www.houdunwang.com" target="_blank">http://www.houdunwang.com</a>
+<p><a href="javascript:;">返回首页</a> &copy; 2016 Powered by <a href="http://zlong.xin/" target="_blank">http://zlong.xin/</a>
 </p>
 </div>
 </div>

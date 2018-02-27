@@ -17,7 +17,12 @@ include_once __DIR__ . '/admin/web.php';
 //    return view('welcome');
 //});
 
-Route::resource('/', 'TestController');
-Auth::routes();
+Route::resource('/', 'IndexController');
 
+//文章
+Route::resource('article', 'ArticleController');
+Route::get('getrank', 'ArticleController@getClickLatest');
+
+
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
