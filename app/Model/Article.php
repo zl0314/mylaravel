@@ -16,6 +16,17 @@ class Article extends Model
         }
     }
 
+    /**
+     * 得到推荐到首页的文章
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeRecommend ( $query )
+    {
+        return $query->where( 'recommend_to_index', 1 );
+    }
+
     public function category ()
     {
         return $this->hasOne( 'App\Model\Category', 'id', 'category_id' );

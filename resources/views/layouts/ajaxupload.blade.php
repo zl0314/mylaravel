@@ -61,6 +61,8 @@
 
                 if (typeof(upload_callback) == 'function') {
                     upload_callback(resp);
+                }else{
+                    alert(resp.msg)
                 }
             }
         });

@@ -26,9 +26,25 @@
                     <input type="text" class="form-control"  value="{{$setting->email??''}}"name="data[email]" id="" placeholder="请输入站长邮箱">
                 </div>
 
+                <div class="form-group">
+                    <label for="">站长邮箱首页Banner：</label>
+                        <input id="index_banner" type="hidden" name="data[index_banner]" value="{{$setting->index_banner??''}}"
+                               class="input-txt"/>
+                        <input type="button" class="ajaxUploadBtn btn-primary btn" id="index_banner_button"
+                               onclick="ajaxUpload('index_banner','index_banner')"
+                               value="上传图片">
+                        <small id="fileHelpId" class="form-text text-muted">JPG，PNG，GIF 格式图片,大小1900*260</small>
+                    <br><img style="height:100px;padding:5px;" src="{{$setting->index_banner??'/zl/img/default_upload.jpg'}}" alt="" id="index_banner_pic">
+                </div>
+
+                <div class="form-group">
+                    <label for="">首页Banner上文字内容</label>
+                    <textarea style="height:120px;" name="data[banner_intro]" placeholder="请输入内容" >{{$setting->banner_intro??''}}</textarea>
+                </div>
+
                 <button type="submit" class="btn btn-primary">保存设置</button>
             </form>
         </div>
     </div>
-
+    @include('layouts.ajaxupload')
 @endsection

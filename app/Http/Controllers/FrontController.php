@@ -8,20 +8,33 @@ use Illuminate\Support\Facades\Redis;
 
 class FrontController extends CommonController
 {
-    /**
-     * 站点设置信息
-     * @var array|mixed
-     */
-    public $webset = [];
 
     /**
      * FrontController constructor.
      */
     public function __construct ()
     {
-        $webset = Redis::get( 'setting' );
-        $this->webset = json_decode( $webset );
         parent::__construct();
+
+        $path = request()->path();
+        $pathArr = explode( '/', $path );
+
+        $siteClass = !empty($pathArr[0]) ? $pathArr[0] : 'index';
+        $id = ( !empty( $pathArr[1] ) && is_numeric( $pathArr[1] ) ) ? $pathArr[1] : '0';
+        $siteMethod = !empty( $id ) ? ( !empty( $pathArr[2] ) ? $pathArr[2] : 'show' ) : ( !empty( $pathArr[1] ) ? $pathArr[1] : 'index' );
+
+        $this->siteMethod = $siteMethod;
+        $this->siteClass = $siteClass;
+        $this->id = $id;
+
+        $vars = [
+            'siteMethod' => $siteMethod,
+            'siteClass'  => $siteClass,
+        ];
+        $this->assign( $vars );
+
+        $webset = Redis::get( 'setting' );
+        $this->viewData['webset'] = json_decode( $webset );
     }
 
     /**
@@ -38,4 +51,5 @@ class FrontController extends CommonController
         }
         return view( $template, $this->viewData );
     }
+
 }
