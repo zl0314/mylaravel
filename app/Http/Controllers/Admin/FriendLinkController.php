@@ -7,7 +7,7 @@ use App\Http\Requests\FriendLinkRequest;
 use App\Model\FriendLink;
 use App\Http\Controllers\Admin\BackController;
 
-class FriendLink  extends BackController
+class FriendLinkController  extends BackController
 {
 
     public function __construct ()

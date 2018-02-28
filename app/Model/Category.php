@@ -9,8 +9,8 @@ class Category extends Model
     //
     protected $guarded = [];
 
-    public function article (  )
+    public function articles ()
     {
-        return $this->belongsTo('App\Article', 'category_id');
+        return $this->hasMany( 'App\Model\Article', 'category_id' );
     }
 }
