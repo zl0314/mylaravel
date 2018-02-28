@@ -17,12 +17,23 @@ include_once __DIR__ . '/admin/web.php';
 //    return view('welcome');
 //});
 
-Route::resource('/', 'IndexController');
+Route::resource( '/', 'IndexController' );
 
 //文章
-Route::resource('article', 'ArticleController');
-Route::get('getrank', 'ArticleController@getClickLatest');
+Route::resource( 'article', 'ArticleController' );
+Route::get( 'getrank', 'ArticleController@getClickLatest' );
 
+//标签
+Route::resource( 'tag', 'TagController' );
+
+//分类
+Route::resource( 'category', 'CategoryController' );
+
+//关于我
+Route::get( 'about', 'AboutController@index' );
+
+//留言板
+Route::resource( 'message', 'MessageController' );
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get( '/home', 'HomeController@index' )->name( 'home' );

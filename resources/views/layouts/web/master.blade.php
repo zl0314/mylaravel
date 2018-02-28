@@ -7,7 +7,6 @@
     <meta name="keywords" content="{{$webset->keywords??''}}"/>
     <meta name="description" content="{{$webset->description??''}}"/>
     <link href="/web/css/base.css" rel="stylesheet">
-    <link href="/web/css/index.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="/web/js/modernizr.js"></script>
     <![endif]-->
@@ -18,19 +17,12 @@
 <header>
     <div id="logo"><a href="/"></a></div>
     <nav class="topnav" id="topnav">
-        <a href="/"><span>首页</span><span class="en">Protal</span></a>
-        <a href="about"><span>关于我</span><span class="en">About</span></a>
-        <a href="article"><span>慢生活</span><span class="en">Life</span></a>
-        <a href="message"><span>留言版</span><span class="en">Gustbook</span></a>
+        <a href="/" @if($siteClass == 'index')id="topnav_current" @endif><span>首页</span><span class="en">Protal</span></a>
+        <a href="/article" @if($siteClass == 'article')id="topnav_current" @endif><span>文章</span><span class="en">Article</span></a>
+        <a href="/about" @if($siteClass == 'about')id="topnav_current" @endif><span>关于我</span><span class="en">About</span></a>
+        <a href="/message" @if($siteClass == 'message')id="topnav_current" @endif><span>留言版</span><span class="en">Gustbook</span></a>
     </nav>
 </header>
-<div class="banner">
-    <section class="box">
-        <ul class="texts">
-            {!! htmlspecialchars_decode($webset->banner_intro) !!}
-        </ul>
-    </section>
-</div>
 
 <script>
     $.ajaxSetup({

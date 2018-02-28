@@ -9,14 +9,14 @@
         <div class="index_about">
             <h2 class="c_titile">{{$article->title}}</h2>
             <p class="box_c"><span class="d_time">发布时间：{{$article->created_at}}</span>
-                <span>查看次数：2323</span></p>
+                <span>查看次数：{{$article->click}}</span></p>
             <ul class="infos">
                 {!! $article->content !!}
             </ul>
             <div class="keybq">
                 <p><span>关键字词</span>：
                     @foreach($article->tags as $k => $r)
-                        {{$r->name}}
+                        <a href="{{url('/tag/'.$r->id)}}">{{$r->name}}</a>
                     @endforeach
                 </p>
 

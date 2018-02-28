@@ -32,7 +32,8 @@ Route::group( [ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'ad
     Route::get( 'setting', 'SettingController@index' );
     Route::post( 'setting', 'SettingController@store' );
 
-    Route::resource( 'friend_link', 'FriendLink' );
+    Route::resource( 'friend_link', 'FriendLinkController' );
+    Route::resource( 'about', 'AboutController' );
 
 } );
 

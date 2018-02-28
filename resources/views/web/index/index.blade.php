@@ -1,6 +1,15 @@
 @extends('layouts.web.master')
 
 @section('content')
+    <link href="/web/css/index.css" rel="stylesheet">
+
+    <div class="banner">
+        <section class="box">
+            <ul class="texts">
+                {!! htmlspecialchars_decode($webset->banner_intro) !!}
+            </ul>
+        </section>
+    </div>
     <article>
         <h2 class="title_tj">
             <p>文章<span>推荐</span></p>
@@ -9,10 +18,10 @@
             @foreach($article as $k => $r)
 
             <h3>{{$r->title}}</h3>
-            <figure><img src="{{$r->thumb}}"></figure>
+            <figure><img src="{{$r->thumb??'/web/images/001.png'}}"></figure>
             <ul>
                 <p>{{$r->intro}}</p>
-                <a title="{{$r->title}}" href="article/{{$r->id}}"  class="readmore">阅读全文>></a>
+                <a title="{{$r->title}}" href="/article/{{$r->id}}"  class="readmore">阅读全文>></a>
             </ul>
             <p class="dateview"><span>{{date('Y-m-d', strtotime($r->created_at))}}</span><span></span></p>
 

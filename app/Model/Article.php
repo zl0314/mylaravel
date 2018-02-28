@@ -18,6 +18,7 @@ class Article extends Model
 
     /**
      * 得到推荐到首页的文章
+     *
      * @param $query
      *
      * @return mixed
@@ -29,7 +30,8 @@ class Article extends Model
 
     public function category ()
     {
-        return $this->hasOne( 'App\Model\Category', 'id', 'category_id' );
+        //return $this->belongsTo( 'App\Model\Category', 'category_id' );
+        return $this->belongsTo( 'App\Model\Category' );
     }
 
     public function tags ()

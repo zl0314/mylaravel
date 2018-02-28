@@ -37,6 +37,7 @@
                     <li><a href="{{url('admin/category')}}" target="main"><i class="fa fa-fw fa-certificate"></i>文章分类</a>
                     <li><a href="{{url('admin/tag')}}" target="main"><i class="fa fa-fw fa-tags"></i>标签管理</a>
                     <li><a href="{{url('admin/friend_link')}}" target="main"><i class="fa fa-fw fa-link"></i>友情链接</a></li>
+                    <li><a href="{{url('admin/about')}}" target="main"><i class="fa fa-fw fa-about"></i>关于我</a></li>
                     </li>
                 </ul>
             </li>
